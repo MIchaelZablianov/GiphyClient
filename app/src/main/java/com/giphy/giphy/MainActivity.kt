@@ -1,11 +1,9 @@
 package com.giphy.giphy
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
-    val API_KEY = "pH3A03S4lHZ5RDp7B28RWFVNKmXhzY4A"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

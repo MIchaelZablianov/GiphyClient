@@ -1,5 +1,7 @@
 package com.giphy.giphy.network
 
+import com.giphy.giphy.network.interceptors.AuthorizationInterceptor
+import com.giphy.giphy.network.services.GiphyGifApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -19,7 +21,7 @@ object NetworkManager{
     init {
         val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(AuthorizationInterceptor())
-                .addInterceptor(ErrorResponseInterceptor())
+                //.addInterceptor(ErrorResponseInterceptor())
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
