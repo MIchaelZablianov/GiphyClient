@@ -1,6 +1,5 @@
 package com.giphy.giphy.network.models
 
-import android.provider.MediaStore
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -58,7 +57,7 @@ class GifData {
     var user: User? = null
     @SerializedName("images")
     @Expose
-    var images: MediaStore.Images? = null
+    var images: Images? = null
     @SerializedName("title")
     @Expose
     var title: String? = null

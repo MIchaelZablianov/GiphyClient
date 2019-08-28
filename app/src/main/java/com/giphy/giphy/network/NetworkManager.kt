@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 object NetworkManager{
 
     const val TAG = "NetworkManager"
-    const val BASE_URL = "api.giphy.com/v1/"
+    const val BASE_URL = "https://api.giphy.com/v1/"
 
     val giphyGifApi: GiphyGifApi
     val gson: Gson

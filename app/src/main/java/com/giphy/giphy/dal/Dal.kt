@@ -2,6 +2,7 @@ package com.giphy.giphy.dal
 
 import com.giphy.giphy.network.NetworkManager
 import com.giphy.giphy.network.models.GifData
+import com.giphy.giphy.network.models.GifResponseData
 import org.jdeferred.Promise
 import org.jdeferred.android.AndroidDeferredObject
 import retrofit2.Call
@@ -26,14 +27,14 @@ object Dal {
         }
 
         if (deferred.isPending) {
-            NetworkManager.giphyGifApi.search(query, offset, limit).enqueue(object : Callback<List<GifData>> {
-                override fun onFailure(call: Call<List<GifData>>?, t: Throwable?) {
+            NetworkManager.giphyGifApi.search(query, offset, limit).enqueue(object : Callback<GifResponseData> {
+                override fun onFailure(call: Call<GifResponseData>?, t: Throwable?) {
                     deferred.reject(t)
                 }
 
-                override fun onResponse(call: Call<List<GifData>>?, response: Response<List<GifData>>?) {
-                    gifQueryMap[query]?.addAll(response?.body()!!)
-                    deferred.resolve(response?.body())
+                override fun onResponse(call: Call<GifResponseData>?, response: Response<GifResponseData>?) {
+                    gifQueryMap[query]?.addAll(response?.body()?.data!!)
+                    deferred.resolve(response?.body()?.data)
                 }
             })
         }
