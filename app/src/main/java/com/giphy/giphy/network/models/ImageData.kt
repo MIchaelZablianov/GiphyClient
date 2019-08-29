@@ -10,10 +10,10 @@ class ImageData {
     var url: String? = null
     @SerializedName("width")
     @Expose
-    var width: String? = null
+    var width: Int? = null
     @SerializedName("height")
     @Expose
-    var height: String? = null
+    var height: Int? = null
     @SerializedName("size")
     @Expose
     var size: String? = null
