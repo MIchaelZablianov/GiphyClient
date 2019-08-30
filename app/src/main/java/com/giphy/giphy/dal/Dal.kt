@@ -18,9 +18,9 @@ object Dal {
 
         if (gifQueryMap[query] != null) {
             if (gifQueryMap[query]?.size!! >= offset + limit) {
-                deferred.resolve(gifQueryMap[query]?.subList(offset, offset + limit))
+                deferred.resolve(ArrayList(gifQueryMap[query]?.subList(offset, offset + limit)))
             } else if (gifQueryMap[query]?.size!! in (offset + 1)..(limit - 1)) {
-                deferred.resolve(gifQueryMap[query]?.subList(offset, gifQueryMap[query]?.size!! - 1))
+                deferred.resolve(ArrayList(gifQueryMap[query]?.subList(offset, gifQueryMap[query]?.size!! - 1)))
             }
         } else {
             gifQueryMap[query] = ArrayList()

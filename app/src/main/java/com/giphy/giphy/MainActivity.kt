@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
             loadGifs()
         }
-
+        pb.visibility = View.VISIBLE
         loadGifs()
     }
 
@@ -93,9 +94,9 @@ class MainActivity : AppCompatActivity() {
     private fun loadGifs() {
         Dal.searchGifs(query, offset, LIMIT).done {
             if (offset == 0) {
-                adapter?.setNewData(ArrayList(it))
+                adapter?.setNewData(it)
             } else {
-                adapter?.addData(ArrayList(it))
+                adapter?.addData(it)
             }
             adapter?.loadMoreComplete()
             swipeRefresh.isRefreshing = false
@@ -103,6 +104,8 @@ class MainActivity : AppCompatActivity() {
             Log.e(TAG, "failed to load gifs", it)
             adapter?.loadMoreFail()
             swipeRefresh.isRefreshing = false
+        }.always { state, gifs, t ->
+            pb.visibility = View.GONE
         }
     }
 }
